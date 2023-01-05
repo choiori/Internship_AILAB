@@ -13,8 +13,6 @@ from EarlyStopping import EarlyStopping as ES
 from loader_ import EEGDataLoader
 # from loader_simple import EEGDataLoader
 from balanced_loss import Loss
-from losses import FocalLossLabelSmooth
-from losses import Loss as CLFocalLossLabelSmooth
 import numpy as np
 import torch
 import torch.nn.functional as F
