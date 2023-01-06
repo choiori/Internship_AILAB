@@ -188,7 +188,7 @@ class KFold():
 
                 print(f"Valid Epoch: {epoch},   Loss: {valid_loss / (batch_cnt):.3f} | Acc: {100. * correct / total:.3f} ({correct}/{total})")
 
-            early_stopping(valid_loss, model)
+            early_stopping(valid_loss, self.model)
             
             if early_stopping.early_stop:
                 print('Early Stopping')
