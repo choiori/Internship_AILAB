@@ -8,7 +8,6 @@ class Transformer(nn.Module):
     def __init__(self, config, device, fc_out=True):
 
         super(Transformer, self).__init__()
-        # print(config)
         self.num_classes = config['num_classes']
         self.hidden_dim = config['hidden_dim']
         self.nheads = config['nheads']
@@ -40,8 +39,7 @@ class Transformer(nn.Module):
         
         x = x.transpose(0, 1)
         pe = pe.transpose(0, 1)
-        # x = self.pos_encoding(x)
-        # x.cuda()
+        # x = self.pos_encoding(x) 
         x = x + pe
         x = self.transformer(x)
         x = x.transpose(0, 1)
