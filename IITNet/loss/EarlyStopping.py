@@ -40,8 +40,8 @@ class EarlyStopping(): #patience = 10
             
     def save_checkpoint(self, fold, val_loss, model):
         '''validation loss가 감소하면 모델을 저장한다.'''
-        os.makedirs(f'../checkpoints/{self.loss_type}/seq{self.seq_len}', exist_ok=True)
-        self.path =  f'../checkpoints/{self.loss_type}/seq{self.seq_len}/fold{fold}.pt'
+        os.makedirs(f'./checkpoints/{self.loss_type}/seq{self.seq_len}', exist_ok=True)
+        self.path =  f'./checkpoints/{self.loss_type}/seq{self.seq_len}/fold{fold}.pt'
         
         if self.verbose:
             print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')

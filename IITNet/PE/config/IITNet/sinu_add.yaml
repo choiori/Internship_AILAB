@@ -1,0 +1,25 @@
+TASK: PE
+TYPE: sinu_add
+
+LOADER:
+    loader.sinu
+MODEL_TYPE:
+    model.sinu.add
+
+
+PARAMETERS:
+    BATCH_SIZE: 256
+    LEARNING_RATE: 0.005
+    WEIGHT_DECAY: 0.000001
+
+MODEL:
+    RESNET:
+        NUM_LAYERS: 50
+        DROPOUT_RATE: 0.5
+    LSTM:
+        NUM_LAYERS: 2
+        HIDDEN_DIM: 128
+        BIDIRECTIONAL: True
+    FC:
+        NUM_CLASSES: 5
+        

@@ -198,7 +198,7 @@ class KFold():
     # test                            
     def evaluate(self):
                 
-        checkpoint = torch.load(f'../checkpoints/{self.loss_type}/seq{self.seq_len}/fold{self.fold_num}.pt')
+        checkpoint = torch.load(f'./checkpoints/{self.loss_type}/seq{self.seq_len}/fold{self.fold_num}.pt')
         self.model.load_state_dict(checkpoint)
         
         self.model.eval()

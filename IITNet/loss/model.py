@@ -320,7 +320,8 @@ class biLSTM(nn.Module):
     def forward(self,x):
         h_0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size).to(self.device)
         c_0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size).to(self.device)
-        
+        # h_0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size)
+        # c_0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size)
         out, _ = self.lstm(x, (h_0, c_0))
         out_forward = out[:, -1, :self.hidden_size]
         out_back = out[:, 0, self.hidden_size:]
