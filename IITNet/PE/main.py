@@ -4,6 +4,7 @@ import torch.nn as nn
 import argparse
 import yaml
 
+from kfold_baseline import KFoldIter_baseline
 from kfold import KFoldIter 
 from utils import args_to_list, metric_result, load_module, set_random_seed
 
@@ -28,7 +29,10 @@ if __name__ == '__main__':
     for seq_len in args_to_list(args.seq_len):
         print(f'[INFO] sequence_length : {seq_len}')
         
-        kFold = KFoldIter(args, config, seq_len)
+        if config['TASK'] == 'baseline':
+            kFold = KFoldIter_baseline(args, config, seq_len)
+        else:
+            kFold = KFoldIter(args, config, seq_len)
             
         y_trues, y_preds = kFold.run()
         

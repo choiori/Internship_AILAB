@@ -74,6 +74,7 @@ class EEGDataLoader(Dataset):
                 relative_idx = idx / (len(npz_file['y'] * 47)-1) 
                 pe = relative_idx.reshape(-1, 1)
                 pe = pe.expand(47 * self.seq_len, 128) 
+                # pe = pe.expand(470, 128)
                 epochs.append([file_idx, i, self.seq_len, pe])
             #############################################################    
             file_idx += 1

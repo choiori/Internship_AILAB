@@ -97,7 +97,7 @@ class KFoldIter():
             
             self.model.train()
             correct, total, train_loss, batch_cnt = 0, 0, 0, 0
-
+                
             for batch_idx, (X, Y, pos_idx) in enumerate(self.dataloader_dict['train']):
 
                 batch_cnt += 1

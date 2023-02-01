@@ -154,7 +154,8 @@ class ResNetFeature(nn.Module):
 
         out = torch.cat(f_seq, dim=1)
         
-        
+        #### for문 적용 x ####
+        # print(f'resnet input: {x.shape}')
         # # out = []
         # out = self.initial_layer(x)
         # out = self.layer1(out)
@@ -162,9 +163,10 @@ class ResNetFeature(nn.Module):
         # out = self.maxpool(out)
         # out = self.layer3(out)
         # out = self.layer4(out)
-        # out = self.dropout(out)
+        # out = self.dropout(out)    # (B, C, L)
+        # # print('permut_ex:', out.shape)
+        # out = out.permute(0, 2, 1)      # (B, L, C)
+        # # print('out',out.shape)
         
-        # out.permute(0, 2, 1)
-        # print('out',out.shape)
-        
-        return out
+        # print(f'resnet output: {out.shape}')
+        return out    

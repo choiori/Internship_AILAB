@@ -1,0 +1,33 @@
+TASK: transformer
+TYPE: cnn_tf_sinu_add
+
+LOADER:
+    loader.sinu
+MODEL_TYPE:
+    model.t.cnn_transformer_add
+
+
+PARAMETERS:
+    BATCH_SIZE: 256
+    LEARNING_RATE: 0.005
+    WEIGHT_DECAY: 0.000001
+
+MODEL:
+    RESNET:
+        NUM_LAYERS: 50
+        DROPOUT_RATE: 0.5
+    TRANSFORMER:
+        num_classes: 5
+        hidden_dim: 128
+        nheads: 8
+        num_encoder_layers: 6
+        pool: mean
+        feedforward_dim: 128
+        dropout: False
+    FC:
+        NUM_CLASSES: 5
+
+# dim feedforward 128
+# pool 'attn' or 'mean'
+
+        

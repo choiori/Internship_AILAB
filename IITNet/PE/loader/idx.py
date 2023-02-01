@@ -70,7 +70,8 @@ class EEGDataLoader(Dataset):
             for i in range(len(npz_file['y']) - self.seq_len + 1):
                 idx = torch.tensor(list(range(i * 47 ,(i + self.seq_len) * 47)))
                 pe = idx.reshape(-1, 1)  
-                pe = pe.expand(47 * self.seq_len, 128)  
+                pe = pe.expand(47 * self.seq_len,128)  
+                # pe = pe.expand(470, 128)  => #### concat (-1,470,128), concat_1 (-1,470,1) ######
                 epochs.append([file_idx, i, self.seq_len, pe])
             #############################################################    
             file_idx += 1

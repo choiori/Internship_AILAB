@@ -28,11 +28,12 @@ class EEGDataLoader(Dataset):
     
     
     def __getitem__(self, idx):
-        # n_sample = 30 * self.sr * self.seq_len
+        n_sample = 30 * self.sr * self.seq_len
         #########################################################
         file_idx, sub_idx, seq_len, pe = self.epochs[idx]
         #########################################################
         inputs = self.inputs[file_idx][sub_idx:sub_idx+seq_len]
+        # inputs = inputs.reshape(1, n_sample)                      ####### for문 x #####
         inputs = torch.from_numpy(inputs).float()
         labels = self.labels[file_idx][sub_idx:sub_idx+seq_len]
         labels = torch.from_numpy(labels).long()
@@ -89,21 +90,25 @@ class PositionalEncoding(nn.Module):
         - device : cuda or cpu
         """
         
-        super(PositionalEncoding, self).__init__()
+        super(PositionalEncoding, self).__init__() # nn.Module 초기화
         
-
+        # input matrix(자연어 처리에선 임베딩 벡터)와 같은 size의 tensor 생성
+        # 즉, (max_len, d_model) size
         self.encoding = torch.zeros(max_len, d_model, device=device)
-        self.encoding.requires_grad = False 
+        self.encoding.requires_grad = False # 인코딩의 그래디언트는 필요 없다. 
         
-
+        # 위치 indexing용 벡터
+        # pos는 max_len의 index를 의미한다.
         pos = torch.arange(0, max_len, device =device)
-
+        # 1D : (max_len, ) size -> 2D : (max_len, 1) size -> word의 위치를 반영하기 위해
         
-        pos = pos.float().unsqueeze(dim=1) 
-
+        pos = pos.float().unsqueeze(dim=1) # int64 -> float32 (없어도 되긴 함)
+        
+        # i는 d_model의 index를 의미한다. _2i : (d_model, ) size
+        # 즉, embedding size가 512일 때, i = [0,512]
         _2i = torch.arange(0, d_model, step=2, device=device).float()
         
-
+        # (max_len, 1) / (d_model/2 ) -> (max_len, d_model/2)
         self.encoding[:, ::2] = torch.sin(pos / (10000 ** (_2i / d_model)))
         self.encoding[:, 1::2] = torch.cos(pos / (10000 ** (_2i / d_model)))
         
