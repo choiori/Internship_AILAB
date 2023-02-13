@@ -148,9 +148,11 @@ class KFold():
                 
                 total += Y.size(0)
                 X, Y = X.to(self.device), Y.view(-1).to(self.device)
+                print(Y.shape)
     
                 
                 outputs = self.model(X)
+                print(outputs.shape)
                 cost = self.criterion(outputs, Y)
                 
                 self.optimizer.zero_grad()

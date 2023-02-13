@@ -1,0 +1,24 @@
+task: kd
+
+model:
+  type: model.IITNet
+  resnet:
+    num_layers: 50
+    dropout_rate: 0.5
+  lstm:
+    num_layers: 2
+    hidden_dim: 128
+    bidirectional: True
+  fc:
+    num_classes: 5
+
+teacher:
+  seq_len: 10
+  
+student:
+  seq_len: 1
+
+params:
+  batch_size: 256
+  learning_rate: 0.005
+  weight_decay: 0.000001

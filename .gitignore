@@ -4,7 +4,8 @@ IITNet/code/__pycache__
 feature_code/
 *.sh
 review/
-
+PE_copy/
+jigsaw/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
